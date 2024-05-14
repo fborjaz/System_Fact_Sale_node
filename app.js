@@ -11,7 +11,7 @@ app.set('views', join(__dirname, 'src', 'interfaces', 'html'));
 app.set('view engine', 'ejs');
 
 // Middleware para servir archivos estáticos
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(join(__dirname, 'src', 'interfaces')));
 
 // Middleware para las rutas
 app.use('/', indexRoutes);
