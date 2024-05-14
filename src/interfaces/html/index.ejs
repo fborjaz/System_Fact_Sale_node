@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/header') %>
+  <title>Tienda Unemi</title>
+</head>
+<body>
+  <%- include('partials/navigation') %>
+</body>
+<script>
+  // Ajustar el margen superior de los elementos afectados
+  function ajustarMargenSuperior() {
+    var navbarHeight = $('.navbar').outerHeight();
+    $('#mainContent').css('margin-top', navbarHeight + 'px');
+  }
+
+  // Ejecutar la función cuando el documento esté completamente cargado
+  $(document).ready(function() {
+    ajustarMargenSuperior();
+  });
+</script>
+</html>

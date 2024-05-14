@@ -1,0 +1,18 @@
+[
+  {
+    "nombre": "arianna",
+    "apellido": "alvarado",
+    "dni": "0912345678",
+    "tipo": "regular",
+    "descuento": 0,
+    "card": false
+  },
+  {
+    "nombre": "crist",
+    "apellido": "ocon",
+    "dni": "2334545564",
+    "tipo": "regular",
+    "descuento": 0,
+    "card": false
+  }
+]

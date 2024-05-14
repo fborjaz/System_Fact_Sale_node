@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/header') %>
+  <title>Clientes Registrados</title>  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <%- include('partials/navigation') %>
+  <div class="container">
+    <h2 class="mt-5 mb-4">Clientes Registrados</h2>
+    <div class="row">
+      <% if (clients.length === 0) { %>
+        <div class="col-md-12">
+          <div class="alert alert-info" role="alert">
+            No hay clientes registrados.
+          </div>
+        </div>
+      <% } else { %>
+        <% clients.forEach(function(client) { %>
+          <div class="col-md-6 mb-4">
+            <div class="card h-100 mt-auto">
+              <div class="card-header">
+                <h5 class="card-title">Cliente</h5>
+              </div>
+              <div class="card-body">
+                <p><strong>Nombre:</strong> <%= client.nombre %></p>
+                <p><strong>Apellido:</strong> <%= client.apellido %></p>
+                <p><strong>Cédula:</strong> <%= client.dni %></p>
+                <p><strong>Tipo:</strong> <%= client.tipo %></p>
+                <% if (client.tipo === 'regular') { %>
+                  <p><strong>Descuento:</strong> <%= client.descuento %></p>
+                  <p><strong>Tarjeta:</strong> <%= client.card ? 'Sí' : 'No' %></p>
+                <% } else if (client.tipo === 'vip') { %>
+                  <p><strong>Límite de crédito:</strong> <%= client.limit %></p>
+                <% } %>
+              </div>
+              <div class="card-footer">
+                <a href="/delete/<%= client.dni %>" class="btn btn-danger">Eliminar</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</body>
+<script>
+  // Ajustar el margen superior de los elementos afectados
+  function ajustarMargenSuperior() {
+    var navbarHeight = $('.navbar').outerHeight();
+    $('#mainContent').css('margin-top', navbarHeight + 'px');
+  }
+
+  // Ejecutar la función cuando el documento esté completamente cargado
+  $(document).ready(function() {
+    ajustarMargenSuperior();
+  });
+</script>
+</html>
