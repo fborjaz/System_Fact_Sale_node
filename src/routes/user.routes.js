@@ -14,6 +14,11 @@ router.get('/', (req, res) => {
     res.render('index');
 });
 
+router.get('/menu', (req, res) => {
+    res.render('Menu');
+});
+
+
 // Manejo de la ruta GET '/clientes'
 router.get('/client', async (req, res) => {
     try {

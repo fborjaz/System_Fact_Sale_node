@@ -1,0 +1,222 @@
+/*---------------
+    Fonts
+---------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
+
+/*---------------
+    Global Style
+---------------*/
+/* define custom css varibles */
+
+:root{
+    --bg-black-900: #000000;
+    --bg-black-100: #dddddd;
+    --bg-black-50: #Eff0f4;
+    --bg-black-OP: #E7EEF7;
+    --bg-default: #00ffc3;
+    --bg-hover-nav: #efceff;
+    --bg-opacity: rgba(255,255,255,0.5);
+    --text-black-900: #000000;
+    --text-black-700: #555555;
+    --text-black-600: #666666;
+    --text-black-300: #bbbbbb;
+    --outer-shadow: 3px 3px 3px #d0d0d0, -3px -3px 3px #f8f8f8;
+    --outer-shadow-0: 0 0 0 #d0d0d0, 0 0 0 #f8f8f8;
+    --inner-shadow: inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8;
+    --inner-shadow-0: inset 0 0 0 #d0d0d0, inset 0 0 0 #f8f8f8;
+    --size: 80px;
+    --distance: calc(var(--size)*-1.1);
+}
+
+/* Toda Interfaz */
+
+body{
+   font-size: 16px;
+   line-height: 1.5;
+   overflow-x: hidden;
+   background-color: #9fc9d3;
+}
+
+body.hidden-scrolling{
+    overflow-y: hidden;
+}
+
+*:not(i){
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* Seccion */
+
+section .color{
+  position: absolute;
+  filter: blur(150px);
+}
+
+section .color:nth-child(1){
+  background: #ff359b;
+  width: 60%;
+  height: 60%;
+  top: 15%;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% ;
+}
+
+section .color:nth-child(2){
+  background: #00d2ff;
+  width: 50%;
+  height: 50%;
+  bottom: 15%;
+  left: 10%;
+  border-radius: 78% 22% 28% 72% / 30% 30% 70% 70% ;
+}
+
+section .color:nth-child(3){
+  background: #fffd87;
+  width: 30%;
+  height: 30%;
+  bottom: 15%;
+  right: 0;
+  border-radius: 32% 68% 28% 72% / 52% 72% 28% 48%  ;
+}
+
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 50px;
+}
+
+.container{
+  position: relative;
+  width: calc(100% - 100px);
+  min-height: calc(100vh - 200px);
+  min-height:300px;
+  background: rgb(255, 255, 255, 0.5);
+  box-shadow: 0 15px 35px rgb(255, 255, 255, 0.05);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 75px;
+}
+
+.contenido{
+  transform: translateX(-100px);
+  max-width: 700px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 40px;
+  padding-left: 110px;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.contenido h2{
+  font-size: 3em;
+  color: #8a2435;
+}
+
+
+@keyframes up-down6123 {
+  from {
+    transform: rotate(-15deg);
+  }
+
+  to {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes ball-move8234 {
+  from {
+    left: calc(100% - 40px);
+    transform: rotate(360deg);
+  }
+
+  to {
+    left: calc(0% - 20px);
+    transform: rotate(0deg);
+  }
+}
+
+/* Iconos */
+
+.iconos{
+  position: absolute;
+  right: -25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.iconos li{
+  list-style: none;
+}
+
+.iconos li a{
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 15px 0;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 45px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: rgb(60, 54, 54);
+  border-radius: 10px;
+  text-decoration: none;
+  backdrop-filter: blur(2px);
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.iconos li a:hover{
+  transform: translateY(-20px);
+}
+
+.iconos li a::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: skewX(45deg) translateX(150px);
+  transition: 0.5s;
+}
+
+.iconos li a:hover::before{
+  transform: skewX(45deg) translateX(-150px);
+}
+
+.copy{
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  color: #8a2435;
+}

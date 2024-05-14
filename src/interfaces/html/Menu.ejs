@@ -3,8 +3,9 @@
 <head>
   <%- include('partials/header') %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/index-option.css">
     <link rel="stylesheet" href="/css/nav-I.css">
+  <link rel="stylesheet" href="/css/option.css">
   <title>Tienda Unemi</title>
 </head>
 <body>
@@ -16,19 +17,26 @@
       <div class="container">
         <header>
           <a href="/" class="logo">Menu Tienda Unemi</a>
-          <%- include('partials/navigation') %>
+          <%- include('partials/navigation-Menu') %>
         </header>
 
         <div class="contenido">
-          <h2>Objetivo</h2>
-          <P>.</P>
-          <a href="/calcul">
-            <button class="button">Ver Proyecto <Ver class="fa fa-code-branch"></i></button>
-          </a>
-        </div>
-
-        <div class="bar">
-          <div class="ball"></div>
+          <h2>Opciones</h2>
+          <div class="cards">
+            <div class="card red">
+              <a href="/client">
+                  <p class="tip">Clientes</p>
+              <p class="second-text">Todas las opciones de clientes</p>
+              </a>
+            </div>
+          <div class="card blue">
+              <p class="tip">Producto</p>
+              <p class="second-text">Todas las opciones de producto</p>
+          </div>
+          <div class="card green">
+              <p class="tip">Facturas</p>
+              <p class="second-text">Todas las opciones de factura</p>
+          </div>
         </div>
 
         <ul class="iconos">
