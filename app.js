@@ -11,7 +11,10 @@ const __dirname = path.dirname(__filename);
 
 app.set('views', path.join(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
+
+// Servir archivos estáticos desde 'src/public'
+app.use(express.static(path.join(__dirname, 'src', 'public')));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
