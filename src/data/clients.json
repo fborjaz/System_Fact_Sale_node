@@ -1,1 +1,19 @@
-[{"nombre":"arianna","apellido":"alvarado","dni":"0912345678","tipo":"regular","descuento":0,"card":false}]
+[
+  {
+    "nombre": "arianna",
+    "apellido": "alvarado",
+    "dni": "0912345678",
+    "tipo": "regular",
+    "descuento": 0,
+    "card": false
+  },
+  {
+    "nombre": "Frank",
+    "apellido": "Borja",
+    "dni": "0951817857",
+    "tipo": "vip",
+    "descuento": 0,
+    "card": false,
+    "limit": ""
+  }
+]

@@ -10,11 +10,10 @@
     }
   </style>
 </head>
-
 <body>
   <%- include('partials/navigation.ejs') %>
   <div class="container p-4" id="mainContent">
-    <form class="card card-body" id="clientForm">
+    <form class="card card-body" id="clientForm" method="post" action="/clientes/regclientes">
       <div class="form-group">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required>
@@ -42,24 +41,20 @@
         <label for="limit">Límite de crédito:</label>
         <input type="number" id="limit" name="limit" class="form-control" placeholder="Límite de crédito" min="10000" max="20000">
       </div>
-      <input type="submit" value="Registrar" class="btn btn-primary" onclick="enviarDatos()">
+      <input type="submit" value="Registrar" class="btn btn-primary">
     </form>
   </div>
 </body>
-
 <script src="/funcion.js"></script>
-
 <script>
   // Ajustar el margen superior de los elementos afectados
   function ajustarMargenSuperior() {
     var navbarHeight = $('.navbar').outerHeight();
     $('#mainContent').css('margin-top', navbarHeight + 'px');
   }
-
   // Ejecutar la función cuando el documento esté completamente cargado
   $(document).ready(function() {
     ajustarMargenSuperior();
   });
 </script>
-
 </html>
