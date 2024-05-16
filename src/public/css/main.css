@@ -31,8 +31,27 @@
 }
 
 /* Estilos generales para la página */
-body {
-  font-family: sans-serif;
+body{
+   font-size: 16px;
+   line-height: 1.5;
+   overflow-x: hidden;
+   background-color: #9fc9d3;
+}
+
+body.hidden-scrolling{
+    overflow-y: hidden;
+}
+
+*:not(i){
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
 }
 
 .container {
