@@ -1,8 +1,8 @@
 import express from 'express';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
-import userRoutes from './src/routes/user_routes.js';
-import clienteRoutes from './src/routes/cliente_routes.js'; // Corregir la importación
+const userRoutes = require('./src/routes/user_routes.js');
+const clienteRoutes = require('./src/routes/cliente_routes.js');
 import bodyParser from 'body-parser'; // Agregar body-parser para manejar datos de formularios
 
 const app = express();

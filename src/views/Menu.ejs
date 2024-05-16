@@ -1,68 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <%- include('partials/header') %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/index-option.css">
-    <link rel="stylesheet" href="/css/nav-I.css">
-  <link rel="stylesheet" href="/css/option.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/interfaces/css/index-option.css">
+  <link rel="stylesheet" href="/interfaces/css/nav-I.css">
+  <link rel="stylesheet" href="/interfaces/css/option.css">
   <title>Tienda Unemi</title>
 </head>
+
 <body>
+  <section>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="container">
+      <header>
+        <a href="/" class="logo">Menu Tienda Unemi</a>
+        <%- include('partials/navigation-Menu') %>
+      </header>
 
-    <section>
-      <div class="color"></div>
-      <div class="color"></div>
-      <div class="color"></div>
-      <div class="container">
-        <header>
-          <a href="/" class="logo">Menu Tienda Unemi</a>
-          <%- include('partials/navigation-Menu') %>
-        </header>
-
-        <div class="contenido">
-          <h2>Opciones</h2>
-          <div class="cards">
-            <div class="card red">
-              <a href="/client">
-                  <p class="tip">Clientes</p>
+      <div class="contenido">
+        <h2>Opciones</h2>
+        <div class="cards">
+          <div class="card red">
+            <a href="/clientes"> <p class="tip">Clientes</p>
               <p class="second-text">Todas las opciones de clientes</p>
-              </a>
-            </div>
+            </a>
+          </div>
           <div class="card blue">
+            <a href="/productos">
               <p class="tip">Producto</p>
               <p class="second-text">Todas las opciones de producto</p>
+            </a>
           </div>
           <div class="card green">
+            <a href="/facturas">
               <p class="tip">Facturas</p>
               <p class="second-text">Todas las opciones de factura</p>
+            </a>
           </div>
         </div>
 
         <ul class="iconos">
-          <!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li> -->
           <li><a href="https://github.com/fborjaz/" target="_blank"><i class="fa fa-github"></i></a></li>
-          <!-- <li><a href="#"><i class="fa fa-instagram"></i></a></li> -->
         </ul>
         <p class="copy">github.com/fborjaz -@fborjaz</p>
       </div>
-
-    </section>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    // Ajustar el margen superior de los elementos afectados
-    function ajustarMargenSuperior() {
-      var navbarHeight = $('.navbar').outerHeight();
-      $('#mainContent').css('margin-top', navbarHeight + 'px');
-    }
-
-    // Ejecutar la función cuando el documento esté completamente cargado
-    $(document).ready(function() {
-      ajustarMargenSuperior();
-    });
-</script>
-
+  </section>
 </body>
+
 </html>
