@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <%- include('partials/header') %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/interfaces/css/index.css">
   <link rel="stylesheet" href="/interfaces/css/nav-I.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <title>Tienda Unemi</title>
 </head>
+
 <body>
   <section>
     <div class="color"></div>
@@ -24,7 +27,7 @@
           El Sistema de Gestión de Facturación es una aplicación diseñada para facilitar la gestión de clientes, productos y ventas en un entorno comercial. Permite a los usuarios registrar, actualizar y eliminar clientes y productos, así como también realizar ventas y generar facturas automáticamente. El sistema está diseñado para ser fácil de usar y eficiente, ayudando a los usuarios a llevar un control detallado de sus transacciones comerciales.
         </p>
         <a href="/menu">
-          <button class="button">Ver Proyecto <i class="fa fa-code-branch"></i></button>
+          <button class="button">Ver Proyecto <i class="fas fa-code-branch"></i></button>
         </a>
       </div>
 
@@ -33,18 +36,13 @@
       </div>
 
       <ul class="iconos">
-        <li><a href="https://github.com/fborjaz/" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a href="https://github.com/fborjaz/" target="_blank"><i class="fab fa-github"></i></a></li>
       </ul>
       <p class="copy">github.com/fborjaz - @fborjaz</p>
     </div>
   </section>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      const navbarHeight = $('.navbar').outerHeight();
-      $('#mainContent').css('margin-top', navbarHeight + 'px');
-    });
-  </script>
 </body>
+
 </html>

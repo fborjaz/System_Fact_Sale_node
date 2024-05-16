@@ -14,6 +14,6 @@
     "tipo": "vip",
     "descuento": 0,
     "card": false,
-    "limit": ""
+    "limit": 15000
   }
 ]
