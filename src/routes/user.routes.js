@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs/promises';
+import path from 'path';
 
 const router = Router();
-const clientsFilePath = 'src/data/clients.json';
+const clientsFilePath = path.resolve('src/data/clients.json');
 
 // Configuración de body-parser
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -18,8 +19,7 @@ router.get('/menu', (req, res) => {
     res.render('Menu');
 });
 
-
-// Manejo de la ruta GET '/clientes'
+// Manejo de la ruta GET '/client'
 router.get('/client', async (req, res) => {
     try {
         const clients = await readClientsFromFile();
@@ -37,7 +37,7 @@ router.get('/regclientes', (req, res) => {
 
 // Manejo de la ruta POST '/regclientes'
 router.post('/regclientes', async (req, res) => {
-    const { nombre, apellido, dni, tipo, descuento, card, limit } = req.body;
+    const { nombre, apellido, dni, tipo, descuento = 0, card = false, limit = 0 } = req.body;
 
     if (!nombre || !apellido || !dni || !tipo) {
         return res.status(400).send('Faltan datos obligatorios');
@@ -70,13 +70,22 @@ router.get('/delete/:dni', async (req, res) => {
 });
 
 async function readClientsFromFile() {
-    const data = await fs.readFile(clientsFilePath, 'utf8');
-    return JSON.parse(data);
+    try {
+        const data = await fs.readFile(clientsFilePath, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error al leer el archivo:', error);
+        return [];
+    }
 }
 
 async function writeClientsToFile(clients) {
-    const jsonClients = JSON.stringify(clients);
-    await fs.writeFile(clientsFilePath, jsonClients, 'utf8');
+    try {
+        const jsonClients = JSON.stringify(clients, null, 2);
+        await fs.writeFile(clientsFilePath, jsonClients, 'utf8');
+    } catch (error) {
+        console.error('Error al escribir el archivo:', error);
+    }
 }
 
 export default router;

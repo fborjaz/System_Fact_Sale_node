@@ -1,7 +1,8 @@
 import express from 'express';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
-import indexRoutes from './src/routes/user.routes.js';
+import userRoutes from './src/routes/user.routes.js';
+import clientRoutes from './src/routes/user.routes.js'; // Importar las rutas de clientes desde el archivo correcto
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -14,7 +15,8 @@ app.set('view engine', 'ejs');
 app.use(express.static(join(__dirname, 'src', 'interfaces')));
 
 // Middleware para las rutas
-app.use('/', indexRoutes);
+app.use('/', userRoutes);
+app.use('/clientes', clientRoutes); // Usar las rutas de los clientes
 
 // Manejo de errores
 app.use((err, req, res, next) => {
