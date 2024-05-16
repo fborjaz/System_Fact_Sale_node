@@ -1,72 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <title>Registrar Cliente</title>
   <%- include('partials/header') %>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/interfaces/css/regclientes.css">
+  <link rel="stylesheet" href="/css/regclientes.css">
 </head>
-
 <body>
-  <%- include('partials/navigation') %>
 
   <div class="container mt-5">
     <h2>Registrar Nuevo Cliente</h2>
+
+    <% if (typeof error !== 'undefined') { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
     <form class="form-group" method="POST" action="/clientes">
       <div class="form-group">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required>
+        <input type="text" id="nombre" name="nombre" class="form-control" value="<%= typeof cliente !== 'undefined' ? cliente.nombre : '' %>" placeholder="Nombre" required>
       </div>
 
       <div class="form-group">
         <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" required>
+        <input type="text" id="apellido" name="apellido" class="form-control" value="<%= typeof cliente !== 'undefined' ? cliente.apellido : '' %>" placeholder="Apellido" required>
       </div>
 
       <div class="form-group">
         <label for="dni">Cédula:</label>
-        <input type="text" id="dni" name="dni" class="form-control" placeholder="Cédula" required>
+        <input type="text" id="dni" name="dni" class="form-control" value="<%= typeof cliente !== 'undefined' ? cliente.dni : '' %>" placeholder="Cédula" required>
       </div>
 
       <div class="form-group">
         <label for="tipo">Tipo de Cliente:</label>
         <select id="tipo" name="tipo" class="form-control" onchange="mostrarOpciones()">
-          <option value="regular">Cliente Regular</option>
-          <option value="vip">Cliente VIP</option>
+          <option value="regular" <%= typeof cliente !== 'undefined' && cliente.tipo === 'regular' ? 'selected' : '' %>>Cliente Regular</option>
+          <option value="vip" <%= typeof cliente !== 'undefined' && cliente.tipo === 'vip' ? 'selected' : '' %>>Cliente VIP</option>
         </select>
       </div>
 
-      <div class="form-group" id="cardField">
+      <div class="form-group" id="cardField" <%= typeof cliente !== 'undefined' && cliente.tipo === 'regular' ? '' : 'style="display: none;"' %>>
         <label for="card">¿Tiene tarjeta de descuento?</label>
-        <input type="checkbox" id="card" name="card">
+        <input type="checkbox" id="card" name="card" onchange="toggleDescuento()" <%= typeof cliente !== 'undefined' && cliente.card ? 'checked' : '' %>>
+
+        <input type="number" id="descuento" name="descuento" class="form-control" value="10" hidden>
       </div>
 
-      <div class="form-group" id="limitField">
+      <div class="form-group" id="limitField" <%= typeof cliente !== 'undefined' && cliente.tipo === 'vip' ? '' : 'style="display: none;"' %>>
         <label for="limit">Límite de crédito:</label>
-        <input type="number" id="limit" name="limit" class="form-control" placeholder="Límite de crédito" min="0">
+        <input type="number" id="limit" name="limit" class="form-control" value="<%= typeof cliente !== 'undefined' ? cliente.limit : '' %>" placeholder="Límite de crédito" min="0">
       </div>
 
-      <button type="submit" class="btn btn-primary">Registrar Cliente</button>
-    </form>
+      <button type="submit" class="btn btn-primary">Registrar Cliente</button> <div class="form-group">
+  </form>
   </div>
 
-  <script>
-    function mostrarOpciones() {
-      const tipoCliente = document.getElementById('tipo').value;
-      const cardField = document.getElementById('cardField');
-      const limitField = document.getElementById('limitField');
+<script>
+  function mostrarOpciones() {
+    const tipoCliente = document.getElementById('tipo').value;
+    const cardField = document.getElementById('cardField');
+    const limitField = document.getElementById('limitField');
+    const descuentoInput = document.getElementById('descuento');
 
-      if (tipoCliente === 'regular') {
-        cardField.style.display = 'block';
-        limitField.style.display = 'none';
-      } else if (tipoCliente === 'vip') {
-        cardField.style.display = 'none';
-        limitField.style.display = 'block';
+    if (tipoCliente === 'regular') {
+      cardField.style.display = 'block';
+      limitField.style.display = 'none';
+      if (document.getElementById('card').checked) {
+        descuentoInput.value = 10;
+      } else {
+        descuentoInput.value = '';
       }
+    } else if (tipoCliente === 'vip') {
+      cardField.style.display = 'none';
+      limitField.style.display = 'block';
+      descuentoInput.value = ''; // Asegurar que el descuento se borre si es VIP
     }
-  </script>
-</body>
+  }
 
+  // Llamar a mostrarOpciones() al cargar la página para establecer el estado inicial
+  window.addEventListener('load', mostrarOpciones);
+</script>
+</body>
 </html>

@@ -11,17 +11,17 @@ async function readClientsFromFile() {
     return JSON.parse(data);
   } catch (error) {
     console.error('Error al leer el archivo de clientes:', error);
-    return [];
+    return []; // Retornar un arreglo vacío si hay error
   }
 }
 
 async function writeClientsToFile(clients) {
   try {
-    const jsonClients = JSON.stringify(clients, null, 2);
+    const jsonClients = JSON.stringify(clients, null, 2); // Formato legible
     await fs.writeFile(clientsFilePath, jsonClients, 'utf8');
   } catch (error) {
     console.error('Error al escribir en el archivo de clientes:', error);
-    throw error;
+    throw error; // Propagar el error para que pueda ser manejado en otro lugar
   }
 }
 
@@ -29,7 +29,8 @@ const clienteController = {
   listarClientes: async (req, res) => {
     try {
       const clients = await readClientsFromFile();
-      res.render('main', { clients }); // Cambia 'clientes' por 'clients'
+      console.log('Clientes leídos:', clients);
+      res.render('main', { clients }); // Pasar el arreglo 'clients'
     } catch (error) {
       console.error('Error al listar clientes:', error);
       res.status(500).render('error', { mensaje: 'Error al obtener la lista de clientes' });
@@ -43,30 +44,40 @@ const clienteController = {
   crearCliente: async (req, res) => {
     const { nombre, apellido, dni, tipo, descuento, card, limit } = req.body;
 
-    // Validación básica de datos
+    // Validación de datos
     if (!nombre || !apellido || !dni || !tipo) {
       return res.status(400).render('regclientes', {
         error: 'Faltan datos obligatorios',
-        cliente: req.body // Volver a llenar el formulario con los datos ingresados
-      });
-    }
-
-    if (tipo === 'regular' && (typeof descuento !== 'number' || descuento < 0 || descuento > 100)) {
-      return res.status(400).render('regclientes', {
-        error: 'Descuento inválido para cliente regular',
         cliente: req.body
       });
     }
 
-    if (tipo === 'vip' && (typeof limit !== 'number' || limit < 0)) {
+    if (tipo === 'regular' && (isNaN(parseFloat(descuento)) || descuento < 0 || descuento > 100)) {
       return res.status(400).render('regclientes', {
-        error: 'Límite de crédito inválido para cliente VIP',
+        error: 'Descuento inválido para cliente regular (debe ser un número entre 0 y 100)',
         cliente: req.body
       });
+    }
+
+    if (tipo === 'vip' && (isNaN(parseFloat(limit)) || limit < 10000 || limit > 20000)) {
+      return res.status(400).render('regclientes', {
+        error: 'Límite de crédito inválido para cliente VIP (debe estar entre 10000 y 20000)',
+        cliente: req.body
+      });
+    }
+
+    // Normalizar los datos del formulario
+    const clienteData = { nombre, apellido, dni, tipo };
+    if (tipo === 'regular') {
+      clienteData.descuento = parseFloat(descuento);
+      clienteData.card = card === 'on';
+    } else if (tipo === 'vip') {
+      clienteData.limit = parseFloat(limit);
+      delete clienteData.card; // Eliminar la propiedad 'card' para clientes VIP
     }
 
     try {
-      const nuevoCliente = new Cliente(nombre, apellido, dni, tipo, descuento, card, limit);
+      const nuevoCliente = new Cliente(clienteData.nombre, clienteData.apellido, clienteData.dni, clienteData.tipo, clienteData.descuento, clienteData.card, clienteData.limit);
       let clientes = await readClientsFromFile();
       clientes.push(nuevoCliente);
       await writeClientsToFile(clientes);
@@ -80,7 +91,6 @@ const clienteController = {
   mostrarCliente: async (req, res) => {
     const id = req.params.id;
     const clientes = await readClientsFromFile();
-
     const cliente = clientes.find(c => c.dni === id);
 
     if (cliente) {

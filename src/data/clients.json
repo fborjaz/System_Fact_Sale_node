@@ -1,13 +1,5 @@
 [
   {
-    "nombre": "arianna",
-    "apellido": "alvarado",
-    "dni": "0912345678",
-    "tipo": "regular",
-    "descuento": 0,
-    "card": false
-  },
-  {
     "nombre": "Frank",
     "apellido": "Borja",
     "dni": "0951817857",
@@ -15,5 +7,23 @@
     "descuento": 0,
     "card": false,
     "limit": 15000
+  },
+  {
+    "nombre": "Arianna",
+    "apellido": "Alvarado",
+    "dni": "0912345678",
+    "tipo": "vip",
+    "descuento": 0,
+    "card": false,
+    "limit": 15000
+  },
+  {
+    "nombre": "Gabriel",
+    "apellido": "Hasqui",
+    "dni": "099999999",
+    "tipo": "regular",
+    "descuento": 10,
+    "card": true,
+    "limit": 0
   }
 ]
